@@ -137,7 +137,6 @@ if test "$have_h265" = "yes"; then
 	AC_DEFINE([HAVE_H265],[1],[Define to 1 for h265 support])
 fi
 
-
 AC_ARG_WITH(h264,
 	AS_HELP_STRING([--with-h264],[support h264, yes or no]),
 	[have_h264=$withval],[have_h264=yes])
@@ -215,6 +214,11 @@ if test "$have_pcm" = "yes"; then
 	AC_DEFINE([HAVE_PCM],[1],[Define to 1 for PCM support])
 fi
 
+#AC_ARG_WITH(maxpcmrate,
+#	AS_HELP_STRING([--with-maxpcmrate],[Max PCM rate, default is 48000]),
+#	[have_maxpcmrate=$withval],[have_maxpcmrate=48000])
+#AC_DEFINE_UNQUOTED([MAX_PCM_RATE],["$have_maxpcmrate"],[Max PCM rate])
+
 AC_ARG_WITH(eac3,
 	AS_HELP_STRING([--with-eac3],[support E-AC3 / AC3+ / DDP, yes or no]),
 	[have_eac3=$withval],[have_eac3=no])
@@ -257,13 +261,6 @@ if test "$have_dtsdownmix" = "yes"; then
 	AC_DEFINE([HAVE_DTSDOWNMIX],[1],[Define to 1 for DTS downmix support])
 fi
 
-AC_ARG_WITH(force_dtsdownmix,
-	AS_HELP_STRING([--with-force-dtsdownmix],[Forces dts downmix, yes or no]),
-	[force_dtsdownmix=$withval],[force_dtsdownmix=no])
-if test "$force_dtsdownmix" = "yes"; then
-	AC_DEFINE([FORCE_DTSDOWNMIX],[1],[Define to 1 to force dts downmix])
-fi
-
 AC_ARG_WITH(max_pcmrate_48K,
 	AS_HELP_STRING([--with-max-pcmrate-48K],[Max PCM rate 48K, yes or no]),
 	[max_pcmrate_48K=$withval],[max_pcmrate_48K=no])
@@ -278,33 +275,35 @@ if test "$dags" = "yes"; then
 	AC_DEFINE([DAGS],[1],[build for dags, yes or no ])
 fi
 
-AC_ARG_WITH(machine,
-	AS_HELP_STRING([--with-machine],[build for machine, $withval]),
-	[machine=$withval],[machine=generic])
-AC_SUBST(machine)
-AC_DEFINE_UNQUOTED(machine,"$machine",[machine])
-if test `echo "$machine" | cut -b 1-2` == "dm"; then
+AC_ARG_WITH(boxtype,
+	AS_HELP_STRING([--with-boxtype],[build for BOXTYPE, $withval]),
+	[BOXTYPE=$withval],[BOXTYPE=dm800])
+AC_SUBST(BOXTYPE)
+AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
+
+if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
 	AC_DEFINE([DREAMBOX],[1],[build for DREAMBOX ])
 fi
-if test `echo "$machine" | cut -b 1-2` == "vu"; then
+if test `echo "$BOXTYPE" | cut -b 1-2` == "vu"; then
 	AC_DEFINE([VUPLUS],[1],[build for VUPLUS ])
 fi
-if test `echo "$machine" | cut -b 1-4` == "gb73"; then
+
+if test "$BOXTYPE" == "gb800se" -o "$BOXTYPE" == "gb800ue" -o "$BOXTYPE" == "gbquad" -o "$BOXTYPE" == "gb800seplus" -o "$BOXTYPE" == "gb800ueplus" -o "$BOXTYPE" == "gbquadplus" -o "$BOXTYPE" == "gbipbox" -o "$BOXTYPE" == "gbultrase" -o "$BOXTYPE" == "gbultraue" -o "$BOXTYPE" == "gbultraueh" -o "$BOXTYPE" == "gbx1" -o "$BOXTYPE" == "gbx2" -o "$BOXTYPE" == "gbx3" -o "$BOXTYPE" == "gbx3h"; then
 	AC_DEFINE([GIGABLUEMIPS],[1],[build for GIGABLUEMIPS ])
 fi
-if test "$machine" == "xc7362" -o "$machine" == "xc7346"; then
+if test "$BOXTYPE" == "spycat" -o "$BOXTYPE" == "spycatmini" -o "$BOXTYPE" == "spycatminiplus" -o "$BOXTYPE" == "osmini" -o "$BOXTYPE" == "osminiplus" -o "$BOXTYPE" == "osmega"; then
 	AC_DEFINE([TYPE2],[1],[build bybass TYPE2])
 fi
 
-if test "$machine" == "hd51" -o "$machine" == "vs1500" -o "$machine" == "h7" -o "$machine" == "8100s"; then
+if test "$BOXTYPE" == "hd51" -o "$BOXTYPE" == "bre2ze4k" -o "$BOXTYPE" == "vs1500" -o "$BOXTYPE" == "h7" -o "$BOXTYPE" == "e4hdultra" -o "$BOXTYPE" == "protek4k"; then
 	AC_DEFINE([MAX_DTS_FRAMESIZE_2012],[1],[max dts framesize supported by driver])
 fi
 
-if test "$machine" == "u5" -o "$machine" == "u41" -o "$machine" == "u42" -o "$machine" == "u5pvr" -o "$machine" == "u51" -o "$machine" == "u52" -o "$machine" == "u53" -o "$machine" == "u54" -o "$machine" == "u55" -o "$machine" == "u56" -o "$machine" == "h9" -o "$machine" == "h9combo" -o "$machine" == "hd60" -o "$machine" == "hd61" -o "$machine" == "cc1" -o "$machine" == "sf8008"  -o "$machine" == "ustym4kpro" -o "$machine" == "v8plus" -o "$machine" == "multibox" -o "$machine" == "gbmv200" -o "$machine" == "beyonwizv2" -o "$machine" == "viper4k"; then
+if test "$BOXTYPE" == "anadol4k" -o "$BOXTYPE" == "dinobot4k" -o "$BOXTYPE" == "mediabox4k" -o "$BOXTYPE" == "dinobot4kse" -o "$BOXTYPE" == "ferguson4k" -o "$BOXTYPE" == "anadol4kv2" -o "$BOXTYPE" == "anadol4kcombo" -o "$BOXTYPE" == "axashis4kcombo" -o "$BOXTYPE" == "dinobot4kl" -o "$BOXTYPE" == "dinobot4kplus" -o "$BOXTYPE" == "axashis4kcomboplus" -o "$BOXTYPE" == "dinobot4kmini" -o "$BOXTYPE" == "dinobot4kpro" -o "$BOXTYPE" == "dinobotu55" -o "$BOXTYPE" == "dinoboth265" -o "$BOXTYPE" == "axashistwin" -o "$BOXTYPE" == "axashisc4k" -o "$BOXTYPE" == "anadolprohd5" -o "$BOXTYPE" == "h9" -o "$BOXTYPE" == "h9combo" -o "$BOXTYPE" == "hd60" -o "$BOXTYPE" == "hd61" -o "$BOXTYPE" == "v8plus" -o "$BOXTYPE" == "multibox" -o "$BOXTYPE" == "cc1" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "gbtrio4k" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k"; then
 	AC_DEFINE([HISILICON],[1],[build for HISILICON ])
 fi
 
-if test "$machine" == "osmio4k" -o "$machine" == "osmio4kplus"; then
+if test "$BOXTYPE" == "osmio4k" -o "$BOXTYPE" == "osmio4kplus"; then
 	AC_DEFINE([OSMIO4K],[1],[build for OSMIO4K ])
 fi
 
