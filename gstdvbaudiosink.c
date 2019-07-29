@@ -64,10 +64,6 @@
 #include <config.h>
 #endif
 
-#ifndef AUDIO_GET_PTS
-#define AUDIO_GET_PTS	_IOR('o', 19, __u64)
-#endif
-
 #ifdef __sh__
 #include <linux/dvb/stm_ioctls.h>
 #endif
