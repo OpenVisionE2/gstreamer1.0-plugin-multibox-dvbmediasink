@@ -281,15 +281,17 @@ AC_ARG_WITH(boxtype,
 AC_SUBST(BOXTYPE)
 AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
-if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
+AC_ARG_WITH(boxbrand,
+	AS_HELP_STRING([--with-boxbrand],[build for BOXBRAND, $withval]),
+	[BOXBRAND="$withval"],[BOXBRAND="dreambox"])
+AC_SUBST(BOXBRAND)
+AC_DEFINE_UNQUOTED(BOXBRAND,"$BOXBRAND",[box brand])
+
+if test "$BOXBRAND" == "dreambox"; then
 	AC_DEFINE([DREAMBOX],[1],[build for DREAMBOX ])
 fi
 
-if test `echo "$BOXTYPE" | cut -b 1-5` == "dream"; then
-	AC_DEFINE([DREAMBOX],[1],[build for DREAMBOX ])
-fi
-
-if test `echo "$BOXTYPE" | cut -b 1-2` == "vu"; then
+if test "$BOXBRAND" == "vuplus"; then
 	AC_DEFINE([VUPLUS],[1],[build for VUPLUS ])
 fi
 
@@ -305,7 +307,7 @@ if test "$BOXTYPE" == "hd51" -o "$BOXTYPE" == "bre2ze4k" -o "$BOXTYPE" == "vs150
 	AC_DEFINE([MAX_DTS_FRAMESIZE_2012],[1],[max dts framesize supported by driver])
 fi
 
-if test "$BOXTYPE" == "anadol4k" -o "$BOXTYPE" == "dinobot4k" -o "$BOXTYPE" == "mediabox4k" -o "$BOXTYPE" == "dinobot4kse" -o "$BOXTYPE" == "ferguson4k" -o "$BOXTYPE" == "anadol4kv2" -o "$BOXTYPE" == "anadol4kcombo" -o "$BOXTYPE" == "axashis4kcombo" -o "$BOXTYPE" == "dinobot4kl" -o "$BOXTYPE" == "dinobot4kplus" -o "$BOXTYPE" == "axashis4kcomboplus" -o "$BOXTYPE" == "dinobot4kmini" -o "$BOXTYPE" == "dinobot4kpro" -o "$BOXTYPE" == "dinobotu43" -o "$BOXTYPE" == "dinobotu55" -o "$BOXTYPE" == "dinoboth265" -o "$BOXTYPE" == "axashistwin" -o "$BOXTYPE" == "axashisc4k" -o "$BOXTYPE" == "anadolprohd5" -o "$BOXTYPE" == "protek4kx1" -o "$BOXTYPE" == "spycatminiv2" -o "$BOXTYPE" == "iziboxecohd" -o "$BOXTYPE" == "iziboxx3" -o "$BOXTYPE" == "jdhdduo" -o "$BOXTYPE" == "turing" -o "$BOXTYPE" == "arivatwin" -o "$BOXTYPE" == "arivacombo" -o "$BOXTYPE" == "h9" -o "$BOXTYPE" == "h9combo" -o "$BOXTYPE" == "h10" -o "$BOXTYPE" == "hd60" -o "$BOXTYPE" == "hd61" -o "$BOXTYPE" == "v8plus" -o "$BOXTYPE" == "multibox" -o "$BOXTYPE" == "cc1" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "gbtrio4k" -o "$BOXTYPE" == "gbip4k" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k"; then
+if test "$BOXBRAND" == "dinobot" -o "$BOXTYPE" == "h9" -o "$BOXTYPE" == "h9combo" -o "$BOXTYPE" == "h10" -o "$BOXTYPE" == "hd60" -o "$BOXTYPE" == "hd61" -o "$BOXBRAND" == "maxytec" -o "$BOXTYPE" == "cc1" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "gbtrio4k" -o "$BOXTYPE" == "gbip4k" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k"; then
 	AC_DEFINE([HISILICON],[1],[build for HISILICON ])
 fi
 
