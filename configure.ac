@@ -311,7 +311,7 @@ if test "$BOXBRAND" == "dinobot" -o "$BOXTYPE" == "h9" -o "$BOXTYPE" == "h9combo
 	AC_DEFINE([HISILICON],[1],[build for HISILICON ])
 fi
 
-if test "$BOXTYPE" == "osmio4k" -o "$BOXTYPE" == "osmio4kplus"; then
+if test "$BOXTYPE" == "osmio4k" -o "$BOXTYPE" == "osmio4kplus" -o "$machine" == "osmini4k"; then
 	AC_DEFINE([OSMIO4K],[1],[build for OSMIO4K ])
 fi
 
