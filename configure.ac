@@ -307,7 +307,7 @@ if test "$BOXTYPE" == "hd51" -o "$BOXTYPE" == "bre2ze4k" -o "$BOXTYPE" == "vs150
 	AC_DEFINE([MAX_DTS_FRAMESIZE_2012],[1],[max dts framesize supported by driver])
 fi
 
-if test "$BOXBRAND" == "dinobot" -o "$BOXTYPE" == "h9" -o "$BOXTYPE" == "h9combo" -o "$BOXTYPE" == "h10" -o "$BOXTYPE" == "hd60" -o "$BOXTYPE" == "hd61" -o "$BOXBRAND" == "maxytec" -o "$BOXTYPE" == "cc1" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "gbtrio4k" -o "$BOXTYPE" == "gbip4k" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k"; then
+if test "$BOXBRAND" == "dinobot" -o "$BOXTYPE" == "h9" -o "$BOXTYPE" == "h9combo" -o "$BOXTYPE" == "h10" -o "$BOXTYPE" == "hd60" -o "$BOXTYPE" == "hd61" -o "$BOXBRAND" == "maxytec" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "gbtrio4k" -o "$BOXTYPE" == "gbip4k" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k"; then
 	AC_DEFINE([HISILICON],[1],[build for HISILICON ])
 fi
 
