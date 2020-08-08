@@ -277,15 +277,21 @@ fi
 
 AC_ARG_WITH(boxtype,
 	AS_HELP_STRING([--with-boxtype],[build for BOXTYPE, $withval]),
-	[BOXTYPE=$withval],[BOXTYPE=dm800])
+	[BOXTYPE=$withval],[BOXTYPE=""])
 AC_SUBST(BOXTYPE)
 AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
 AC_ARG_WITH(boxbrand,
 	AS_HELP_STRING([--with-boxbrand],[build for BOXBRAND, $withval]),
-	[BOXBRAND="$withval"],[BOXBRAND="dreambox"])
+	[BOXBRAND="$withval"],[BOXBRAND=""])
 AC_SUBST(BOXBRAND)
 AC_DEFINE_UNQUOTED(BOXBRAND,"$BOXBRAND",[box brand])
+
+AC_ARG_WITH(stbplatform,
+	AS_HELP_STRING([--with-stbplatform],[build for STBPLATFORM, $withval]),
+	[STBPLATFORM="$withval"],[STBPLATFORM=""])
+AC_SUBST(STBPLATFORM)
+AC_DEFINE_UNQUOTED(STBPLATFORM,"$STBPLATFORM",[stb platform])
 
 if test "$BOXBRAND" == "dreambox"; then
 	AC_DEFINE([DREAMBOX],[1],[build for DREAMBOX ])
@@ -295,23 +301,23 @@ if test "$BOXBRAND" == "vuplus"; then
 	AC_DEFINE([VUPLUS],[1],[build for VUPLUS ])
 fi
 
-if test "$BOXTYPE" == "gb800se" -o "$BOXTYPE" == "gb800ue" -o "$BOXTYPE" == "gbquad" -o "$BOXTYPE" == "gb800seplus" -o "$BOXTYPE" == "gb800ueplus" -o "$BOXTYPE" == "gbquadplus" -o "$BOXTYPE" == "gbipbox" -o "$BOXTYPE" == "gbultrase" -o "$BOXTYPE" == "gbultraue" -o "$BOXTYPE" == "gbultraueh" -o "$BOXTYPE" == "gbx1" -o "$BOXTYPE" == "gbx2" -o "$BOXTYPE" == "gbx3" -o "$BOXTYPE" == "gbx3h"; then
+if test "$STBPLATFORM" == "gb7325" -o "$STBPLATFORM" == "gb7356" -o "$STBPLATFORM" == "gb7358" -o "$STBPLATFORM" == "gb7362" -o "$STBPLATFORM" == "gb73625"; then
 	AC_DEFINE([GIGABLUEMIPS],[1],[build for GIGABLUEMIPS ])
 fi
 
-if test "$BOXTYPE" == "spycat" -o "$BOXTYPE" == "spycatmini" -o "$BOXTYPE" == "spycatminiplus" -o "$BOXTYPE" == "osmini" -o "$BOXTYPE" == "osminiplus" -o "$BOXTYPE" == "osmega"; then
+if test "$STBPLATFORM" == "mipsspycat" -o "$BOXTYPE" == "osmini" -o "$BOXTYPE" == "osminiplus" -o "$BOXTYPE" == "osmega"; then
 	AC_DEFINE([TYPE2],[1],[build bybass TYPE2])
 fi
 
-if test "$BOXTYPE" == "hd51" -o "$BOXTYPE" == "bre2ze4k" -o "$BOXTYPE" == "vs1500" -o "$BOXTYPE" == "h7" -o "$BOXTYPE" == "e4hdultra" -o "$BOXTYPE" == "protek4k"; then
+if test "$STBPLATFORM" == "gfuturesbcmarm" -o "$BOXTYPE" == "h7" -o "$STBPLATFORM" == "8100s"; then
 	AC_DEFINE([MAX_DTS_FRAMESIZE_2012],[1],[max dts framesize supported by driver])
 fi
 
-if test "$BOXBRAND" == "dinobot" -o "$BOXTYPE" == "h9" -o "$BOXTYPE" == "h9combo" -o "$BOXTYPE" == "h10" -o "$BOXTYPE" == "hd60" -o "$BOXTYPE" == "hd61" -o "$BOXBRAND" == "maxytec" -o "$BOXTYPE" == "sf8008" -o "$BOXTYPE" == "sf8008m" -o "$BOXTYPE" == "ustym4kpro" -o "$BOXTYPE" == "gbtrio4k" -o "$BOXTYPE" == "gbip4k" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k"; then
+if test "$BOXBRAND" == "dinobot" -o "$STBPLATFORM" == "zgemmahisi3798mv200" -o "$STBPLATFORM" == "gfutureshisil" -o "$BOXBRAND" == "maxytec" -o "$STBPLATFORM" == "octagonhisil" -o "$BOXTYPE" == "ustym4kpro" -o "$STBPLATFORM" == "gbmv200" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k"; then
 	AC_DEFINE([HISILICON],[1],[build for HISILICON ])
 fi
 
-if test "$BOXTYPE" == "osmio4k" -o "$BOXTYPE" == "osmio4kplus" -o "$machine" == "osmini4k"; then
+if test "$STBPLATFORM" == "edision4k"; then
 	AC_DEFINE([OSMIO4K],[1],[build for OSMIO4K ])
 fi
 
