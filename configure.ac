@@ -313,7 +313,7 @@ if test "$STBPLATFORM" == "gfuturesbcmarm" -o "$BOXTYPE" == "h7" -o "$STBPLATFOR
 	AC_DEFINE([MAX_DTS_FRAMESIZE_2012],[1],[max dts framesize supported by driver])
 fi
 
-if test "$BOXBRAND" == "dinobot" -o "$STBPLATFORM" == "hdboxhisi3716mv300" -o "$STBPLATFORM" == "zgemmahisi3798mv200" -o "$STBPLATFORM" == "gfutureshisil" -o "$BOXBRAND" == "maxytec" -o "$STBPLATFORM" == "octagonhisil" -o "$BOXTYPE" == "ustym4kpro" -o "$STBPLATFORM" == "gbmv200" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k"; then
+if test "$BOXBRAND" == "dinobot" -o "$STBPLATFORM" == "hdboxhisi3716mv300" -o "$STBPLATFORM" == "zgemmahisi3798mv200" -o "$STBPLATFORM" == "gfutureshisil" -o "$BOXBRAND" == "maxytec" -o "$STBPLATFORM" == "octagonhisil" -o "$BOXTYPE" == "ustym4kpro" -o "$STBPLATFORM" == "gbmv200" -o "$BOXTYPE" == "beyonwizv2" -o "$BOXTYPE" == "viper4k" -o "$STBPLATFORM" == "dagsmv200"; then
 	AC_DEFINE([HISILICON],[1],[build for HISILICON ])
 fi
 
